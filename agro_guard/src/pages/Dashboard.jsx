@@ -73,6 +73,7 @@ const Dashboard = () => {
       <div className="col-span-3 flex flex-col gap-6">
         <Financial />
       </div>
+      
     </section>
   );
 };
