@@ -26,7 +26,7 @@ const Sidebar = () => {
     "flex items-center gap-4 px-4 pt-3 pb-2.5 rounded-lg text-md m-2 hover:bg-hover-bg";
 
   return (
-    <section className="flex flex-col bg-sidebar-bg lg:w-[250px] px-4 py-5 sticky left-0 top-0 overflow-y-scroll min-h-screen pt-24">
+    <section className="flex flex-col bg-sidebar-bg lg:w-[250px] px-2 py-5 sticky left-0 top-0 overflow-y-scroll min-h-screen pt-24">
       {isMobile && ( // Render arrow button only on mobile
         <button
           className="flex justify-center md:justify-end lg:hidden"
@@ -43,24 +43,26 @@ const Sidebar = () => {
             key={link.name}
             className={({ isActive }) => (isActive ? activeLink : normalLink)}
           >
-            { isMobile?  showIcons ? (
-              <div className="flex items-center justify-center gap-3 text-lg">
-                <span>{link.icon}</span>
-                {link.name}
-              </div>
+            {isMobile ? (
+              showIcons ? (
+                <div className="flex items-center justify-center gap-3 text-lg">
+                  <span>{link.icon}</span>
+                  {link.name}
+                </div>
+              ) : (
+                <>
+                  <span className="text-2xl">{link.icon}</span>
+                  {/* {link.name} */}
+                </>
+              )
             ) : (
               <>
-                <span className="text-2xl">{link.icon}</span>
-                {/* {link.name} */}
+                <div className="flex items-center justify-center gap-3 text-lg">
+                  <span>{link.icon}</span>
+                  {link.name}
+                </div>
               </>
-            ): 
-            <>
-            <div className="flex items-center justify-center gap-3 text-lg">
-                <span>{link.icon}</span>
-                {link.name}
-              </div>
-            </>
-            }
+            )}
           </NavLink>
         ))}
       </div>
