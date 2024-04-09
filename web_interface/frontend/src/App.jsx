@@ -1,15 +1,15 @@
-import { Outlet, createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
+import { Outlet, createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Navbar, Sidebar } from "./components";
-import {
-  Community,
-  Dashboard,
-  Forecasts,
-  Interface,
-  Reports,
-  Schedules,
-  Settings,
-} from "./pages";
+
+import Dashboard from "../src/pages/Dashboard";
+import Reports from "../src/pages/Reports"
+import Community from "../src/pages/Community"
+import Interface from "../src/pages/Interface"
+import Schedules from "../src/pages/Schedules"
+import Forecasts from "../src/pages/Forecasts"
+import Settings from "../src/pages/Settings"
+
 
 function App() {
   const Layout = () => {
