@@ -120,16 +120,6 @@ const Reports = () => {
       <div className="flex items-center justify-between mb-4">
         <div className="flex space-x-4">
           <button
-            onClick={() => handleViewChange("weekly")}
-            className={`${
-              view === "weekly"
-                ? "bg-button-bg text-text-clr"
-                : "bg-hover-bg text-hover-text-clr"
-            } px-4 py-2 rounded-md hover:bg-hover-bg transition duration-100 ease-in-out`}
-          >
-            Weekly
-          </button>
-          <button
             onClick={() => handleViewChange("daily")}
             className={`${
               view === "daily"
@@ -139,6 +129,18 @@ const Reports = () => {
           >
             Daily
           </button>
+
+          <button
+            onClick={() => handleViewChange("weekly")}
+            className={`${
+              view === "weekly"
+                ? "bg-button-bg text-text-clr"
+                : "bg-hover-bg text-hover-text-clr"
+            } px-4 py-2 rounded-md hover:bg-hover-bg transition duration-100 ease-in-out`}
+          >
+            Weekly
+          </button>
+
           <button
             onClick={() => handleViewChange("custom")}
             className={`${
@@ -160,11 +162,11 @@ const Reports = () => {
               view === "daily" ? "bg-sidebar-bg" : "bg-button-bg"
             } p-2 rounded-md`}
           >
-            <div className="flex justify-center gap-4">
+            <div className="w-full flex items-start gap-4">
               <img
                 src={report.imageUrl}
                 alt="Report Image"
-                className="h-[200px] rounded-lg"
+                className="h-[200px] w-[300px] object-cover rounded-lg"
               />
               <div>
                 <p className="font-semibold text-text-clr">
