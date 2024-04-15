@@ -7,7 +7,7 @@ This is a suitable solution since:
 3. Farmers can get real-time data and insights
 4. Can lead to improved farm productivity.
 
-
+![Design for the robot](./imgs/robot-2.jpg)
 
 
 ## Targets for the solution:
