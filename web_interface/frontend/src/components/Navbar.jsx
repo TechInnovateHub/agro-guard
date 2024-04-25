@@ -1,5 +1,8 @@
-import { MdLogout, MdNotifications, MdPerson } from "react-icons/md";
+import { MdNotifications } from "react-icons/md";
 import { Link } from "react-router-dom";
+
+import { UserButton } from "@clerk/clerk-react";
+
 
 const Navbar = () => {
   return (
@@ -13,14 +16,10 @@ const Navbar = () => {
         </div>
 
         <div className="relative cursor-pointer">
-          <MdPerson />
+        <UserButton />
           <div className="w-2 h-2 rounded-full bg-green-text-clr absolute top-0 right-0" />
         </div>
 
-        <button className="flex items-center gap-2 border-2 px-4 py-2 rounded-md hover:border-green-border-clr transition-all duration-100">
-          <MdLogout />
-          <span>LOGOUT</span>
-        </button>
       </div>
     </nav>
   );

@@ -17,15 +17,17 @@ const Forecasts = () => {
       </div>
 
       <div className="w-full flex flex-col lg:flex-row gap-8 py-4 items-center justify-center">
-        <WeatherCard
-          place={thisLocation}
-          windSpeed={weather.wspd}
-          humidity={weather.humidity}
-          temperature={weather.temp}
-          heatindex={weather.heatindex}
-          iconString={weather.conditions}
-          consditions={weather.conditions}
-        />
+        <div className="">
+          <WeatherCard
+            place={thisLocation}
+            windSpeed={weather.wspd}
+            humidity={weather.humidity}
+            temperature={weather.temp}
+            heatindex={weather.heatindex}
+            iconString={weather.conditions}
+            consditions={weather.conditions}
+          />
+        </div>
 
         <div className="grid justify-center gap-6 grid-cols-2 lg:grid-cols-3 w-full lg:w-[70%]">
           {values?.slice(1, 7).map((curr) => (

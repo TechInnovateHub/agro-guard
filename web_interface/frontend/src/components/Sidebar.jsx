@@ -36,7 +36,7 @@ const Sidebar = () => {
         </button>
       )}
 
-      <div className="flex flex-col">
+      <div className="flex flex-col w-[50px] items-center lg:items-start justify-center md:w-full">
         {Links.map((link) => (
           <NavLink
             to={`/${link.name}`}
@@ -45,7 +45,7 @@ const Sidebar = () => {
           >
             {isMobile ? (
               showIcons ? (
-                <div className="flex items-center justify-center gap-3 text-lg">
+                <div className="flex items-center justify-center gap-3 text-lg w-full">
                   <span>{link.icon}</span>
                   {link.name}
                 </div>
@@ -57,7 +57,7 @@ const Sidebar = () => {
               )
             ) : (
               <>
-                <div className="flex items-center justify-center gap-3 text-lg">
+                <div className="flex items-center justify-center gap-3 text-lg w-full">
                   <span>{link.icon}</span>
                   {link.name}
                 </div>

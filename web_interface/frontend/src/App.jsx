@@ -3,27 +3,43 @@ import { Outlet, createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Navbar, Sidebar } from "./components";
 
 import Dashboard from "../src/pages/Dashboard";
-import Reports from "../src/pages/Reports"
-import Community from "../src/pages/Community"
-import Interface from "../src/pages/Interface"
-import Schedules from "../src/pages/Schedules"
-import Forecasts from "../src/pages/Forecasts"
-import Settings from "../src/pages/Settings"
+import Reports from "../src/pages/Reports";
+import Community from "../src/pages/Community";
+import Interface from "../src/pages/Interface";
+import Schedules from "../src/pages/Schedules";
+import Forecasts from "../src/pages/Forecasts";
+import Settings from "../src/pages/Settings";
+
+import {
+  RedirectToSignIn,
+  SignedIn,
+  SignedOut,
+} from "@clerk/clerk-react";
+
 
 
 function App() {
   const Layout = () => {
     return (
       <main className="w-full ">
-        <Navbar />
-        <div className="flex">
-          <div className="">
-            <Sidebar />
+
+
+        <SignedIn>
+          <Navbar />
+          <div className="flex">
+            <div className="">
+              <Sidebar />
+            </div>
+            <div className="w-full overflow-x-hidden px-5">
+              <Outlet />
+            </div>
           </div>
-          <div className="w-full overflow-x-hidden px-5">
-            <Outlet />
-          </div>
-        </div>
+        </SignedIn>
+
+        <SignedOut>
+        <RedirectToSignIn />
+        </SignedOut>
+
         {/* <Footer /> */}
       </main>
     );

@@ -37,7 +37,7 @@ const MiniCard = ({ time, temp, iconString }) => {
   }, [iconString]);
 
   return (
-    <div className="glassCard w-[10rem] h-[10rem] p-4 flex flex-col">
+    <div className="glassCard w-full md:w-[10rem] h-[10rem] p-4 flex flex-col">
       <p className="text-center">
         {
           new Date(time)

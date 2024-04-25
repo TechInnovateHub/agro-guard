@@ -1,4 +1,4 @@
-import{ useState } from "react";
+import React, { useState } from "react";
 
 const getDeadlineColor = (deadline) => {
   // Calculate days left from the deadline
@@ -28,7 +28,7 @@ const ScheduleTask = ({ task, onToggleComplete }) => {
   };
 
   return (
-    <div className="flex items-center justify-between bg-sidebar-bg p-4 rounded-md">
+    <div className="flex flex-col items-start gap-4 justify-between bg-sidebar-bg p-4 rounded-md">
       <div>
         <p className="font-semibold text-text-clr">{task.title}</p>
         <p className={`text-sm ${deadlineColor}`}>Started: {task.startDate}</p>
@@ -47,57 +47,157 @@ const ScheduleTask = ({ task, onToggleComplete }) => {
 };
 
 const Schedules = () => {
-  // Dummy schedule data
   const [scheduleTasks, setScheduleTasks] = useState([
     {
       id: 1,
-      title: "Task 1",
-      startDate: "2024-02-20",
-      deadline: "2024-02-25",
+      title:
+        "Check soil moisture levels and adjust irrigation for tomato plants",
+      startDate: "2024-04-16",
+      deadline: "2024-04-20",
       completed: false,
     },
     {
       id: 2,
-      title: "Task 2",
-      startDate: "2024-02-21",
-      deadline: "2024-02-24",
-      completed: true,
+      title: "Prepare greenhouse for upcoming seedling transplanting",
+      startDate: "2024-04-17",
+      deadline: "2024-04-22",
+      completed: false,
     },
     {
       id: 3,
-      title: "Task 3",
-      startDate: "2024-02-22",
-      deadline: "2024-02-28",
+      title:
+        "Monitor temperature fluctuations and regulate heating in chicken coop",
+      startDate: "2024-04-18",
+      deadline: "2024-04-23",
       completed: false,
     },
-    // Add more dummy schedule data as needed
+    {
+      id: 4,
+      title: "Inspect hive frames and replenish bee feeders",
+      startDate: "2024-04-19",
+      deadline: "2024-04-24",
+      completed: false,
+    },
   ]);
 
-  const handleToggleComplete = (taskId, completed) => {
-    const updatedTasks = scheduleTasks.map((task) => {
-      if (task.id === taskId) {
-        return { ...task, completed };
-      }
-      return task;
+  const [showForm, setShowForm] = useState(false);
+  const [formData, setFormData] = useState({
+    title: "",
+    deadline: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
     });
-    setScheduleTasks(updatedTasks);
+  };
+
+  const handleAddSchedule = () => {
+    const { title, deadline } = formData;
+    if (title.trim() === "" || deadline.trim() === "") {
+      return; // Prevent adding empty schedules
+    }
+    const newTask = {
+      id: scheduleTasks.length + 1,
+      title: title,
+      startDate: new Date().toISOString().split("T")[0], // Get current date in "yyyy-mm-dd" format
+      deadline: deadline,
+      completed: false,
+    };
+    setScheduleTasks([...scheduleTasks, newTask]);
+    // Clear form data after adding schedule
+    setFormData({
+      title: "",
+      deadline: "",
+    });
+    // Hide the form after adding schedule
+    setShowForm(false);
   };
 
   return (
     <div className="bg-main-bg p-6 rounded-lg shadow-md main-container">
       <h2 className="text-lg font-semibold text-text-clr mb-4">Schedules</h2>
-      <div className=" flex flex-col gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {scheduleTasks.map((task) => (
           <ScheduleTask
             key={task.id}
             task={task}
-            onToggleComplete={handleToggleComplete}
+            onToggleComplete={(taskId, completed) => {
+              const updatedTasks = scheduleTasks.map((task) => {
+                if (task.id === taskId) {
+                  return { ...task, completed };
+                }
+                return task;
+              });
+              setScheduleTasks(updatedTasks);
+            }}
           />
         ))}
       </div>
+      {!showForm && (
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+          onClick={() => setShowForm(true)}
+        >
+          Add Schedule
+        </button>
+      )}
+      {showForm && (
+        <form
+          className="mt-4 w-[300px]"
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleAddSchedule();
+          }}
+        >
+          <div className="flex flex-col gap-4">
+            <label htmlFor="title" className="text-text-clr">
+              Title:
+            </label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              value={formData.title}
+              onChange={handleInputChange}
+              className="px-3 py-2 border border-gray-300 rounded-md text-black focus:outline-none"
+              required
+            />
+          </div>
+          <div className="flex flex-col gap-4 mt-2">
+            <label htmlFor="deadline" className="text-text-clr">
+              Completion Date:
+            </label>
+            <input
+              type="date"
+              id="deadline"
+              name="deadline"
+              value={formData.deadline}
+              onChange={handleInputChange}
+              className="px-3 py-2 border border-gray-300 rounded-md text-black focus:outline-none"
+              required
+            />
+          </div>
+          <div className="flex gap-5">
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+            >
+              Add Schedule
+            </button>
+            <button
+              className="bg-gray-400 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mt-2"
+              onClick={() => setShowForm(false)}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      )}
     </div>
   );
 };
 
 export default Schedules;
-
