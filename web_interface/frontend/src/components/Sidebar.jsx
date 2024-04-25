@@ -20,10 +20,10 @@ const Sidebar = () => {
   };
 
   const activeLink =
-    "flex items-center gap-4 px-4 pt-3 pb-2.5 rounded-lg text-text-clr text-md m-2 bg-hover-bg";
+    "flex items-center gap-4 px-4 pt-3 pb-2.5 rounded-lg text-text-clr text-md m-2 bg-hover-bg w-full";
 
   const normalLink =
-    "flex items-center gap-4 px-4 pt-3 pb-2.5 rounded-lg text-md m-2 hover:bg-hover-bg";
+    "flex items-center gap-4 px-4 pt-3 pb-2.5 rounded-lg text-md m-2 hover:bg-hover-bg w-full";
 
   return (
     <section className="flex flex-col bg-sidebar-bg lg:w-[250px] px-2 py-5 sticky left-0 top-0 overflow-y-scroll min-h-screen pt-24">
@@ -57,7 +57,7 @@ const Sidebar = () => {
               )
             ) : (
               <>
-                <div className="flex items-center justify-center gap-3 text-lg w-full">
+                <div className="flex items-center justify-start gap-3 text-lg w-full">
                   <span>{link.icon}</span>
                   {link.name}
                 </div>

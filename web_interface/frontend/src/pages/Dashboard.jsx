@@ -4,15 +4,21 @@ import { MdArrowOutward } from "react-icons/md";
 import { FaBatteryFull } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-
+import { useUser } from "@clerk/clerk-react";
 
 const Dashboard = () => {
+  const { isSignedIn, user } = useUser();
+
   return (
     <section className="main-container grid grid-cols-3 gap-6 ">
       <div className="col-span-3 md:col-span-2 flex flex-col justify-center">
-        <h1 className="text-3xl font-bold text-green-text-clr">
-          Welcome, Victor! Here&apos;s Your Dashboard
-        </h1>
+        <>
+          {isSignedIn && (
+            <h1 className="text-3xl font-bold text-green-text-clr">
+              Welcome, {user.fullName} Here&apos;s Your Dashboard
+            </h1>
+          )}
+        </>
         <Weather />
       </div>
 
@@ -73,7 +79,6 @@ const Dashboard = () => {
       <div className="col-span-3 flex flex-col gap-6 mb-10">
         <Financial />
       </div>
-      
     </section>
   );
 };

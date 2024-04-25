@@ -11,33 +11,41 @@ import Forecasts from "../src/pages/Forecasts";
 import Settings from "../src/pages/Settings";
 
 import {
+  ClerkLoaded,
+  ClerkLoading,
   RedirectToSignIn,
   SignedIn,
   SignedOut,
 } from "@clerk/clerk-react";
 
-
-
 function App() {
   const Layout = () => {
     return (
       <main className="w-full ">
-
-
         <SignedIn>
-          <Navbar />
-          <div className="flex">
-            <div className="">
-              <Sidebar />
+          <ClerkLoading>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div className="loading">
+                <div className="relative inline-block h-10 w-4 before:absolute before:block before:top-0 before:w-4 before:h-4 before:rounded-full before:bg-white before:origin-[50%] before:animate-bounce"></div>
+                <div className="text-white inline-block ml-1">LOADING...</div>
+              </div>
             </div>
-            <div className="w-full overflow-x-hidden px-5">
-              <Outlet />
+          </ClerkLoading>
+          <ClerkLoaded>
+            <Navbar />
+            <div className="flex">
+              <div className="">
+                <Sidebar />
+              </div>
+              <div className="w-full overflow-x-hidden px-5">
+                <Outlet />
+              </div>
             </div>
-          </div>
+          </ClerkLoaded>
         </SignedIn>
 
         <SignedOut>
-        <RedirectToSignIn />
+          <RedirectToSignIn />
         </SignedOut>
 
         {/* <Footer /> */}
