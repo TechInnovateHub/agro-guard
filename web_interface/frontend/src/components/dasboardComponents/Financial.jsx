@@ -4,9 +4,6 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-  PieChart,
-  Pie,
-  Cell,
   BarChart,
   Bar,
   Rectangle,
@@ -57,12 +54,7 @@ const data = [
   },
 ];
 
-const data2 = [
-  { name: "Area covered", value: 700 },
-  { name: "Area left", value: 300 },
-];
 
-const COLORS = ["#0088FE", "#00C49F"];
 
 const Financial = () => {
   return (
@@ -73,40 +65,9 @@ const Financial = () => {
       <div className="flex flex-col lg:flex-row gap-10 items-center justify-center">
        
 
-        <div className="flex flex-col items-center justify-center  gap-4 bg-sidebar-bg rounded-md py-4 px-2 w-[300px] lg:w-ful">
-          <h1 className="font-bold text-light-text-clr text-xl mb-4">Area Covered</h1>
-          <ResponsiveContainer width={350} height={300}>
-            <PieChart width={400} height={300}>
-              <Pie
-                data={data2}
-                cx="50%"
-                cy="50%"
-                innerRadius={60}
-                outerRadius={80}
-                fill="#8884d8"
-                dataKey="value"
-                label
-              >
-                {data.map((entry, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={COLORS[index % COLORS.length]}
-                  />
-                ))}{" "}
-              </Pie>
-              <Tooltip />
-              <Legend />
-            </PieChart>
-          </ResponsiveContainer>
-          <button className=" bg-main-bg hover:bg-hover-bg transition-colors duration-75 ease-in px-4 py-2 rounded-md w-full">
-            View More
-          </button>
-        </div>
-
-
         <div className="flex flex-col items-center justify-center gap-4 bg-sidebar-bg rounded-md py-4 px-2 w-[300px] lg:w-full">
         <h1 className="font-bold text-light-text-clr text-xl mb-4">Disease Statistics</h1>
-          <ResponsiveContainer width={330} height={300}>
+          <ResponsiveContainer width={600} height={300}>
             <BarChart
               width={'100%'}
               height={300}
